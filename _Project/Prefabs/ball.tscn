@@ -1,0 +1,27 @@
+[gd_scene load_steps=5 format=3 uid="uid://didv5cv5duosd"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_dhuov"]
+bounce = 0.07
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xcans"]
+albedo_color = Color(0.184314, 1, 1, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_2kcj0"]
+material = SubResource("StandardMaterial3D_xcans")
+radius = 2.0
+height = 4.0
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_vg0je"]
+radius = 2.0
+
+[node name="Ball" type="RigidBody3D" groups=["Ball"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0321364, 7.24733, -0.701538)
+mass = 20.0
+physics_material_override = SubResource("PhysicsMaterial_dhuov")
+
+[node name="GeometryInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("SphereMesh_2kcj0")
+skeleton = NodePath("../..")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("SphereShape3D_vg0je")
