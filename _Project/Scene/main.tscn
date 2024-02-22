@@ -51,6 +51,8 @@ script = ExtResource("3_s2451")
 [node name="Floor" type="MeshInstance3D" parent="."]
 mesh = SubResource("BoxMesh_x563g")
 script = ExtResource("1_ivdwr")
+maxAngle = 0.25
+angularSpeed = 0.8
 
 [node name="StaticBody3D" type="StaticBody3D" parent="Floor"]
 physics_material_override = SubResource("PhysicsMaterial_l43b3")
