@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://b4ate52j35wen"]
+[gd_scene load_steps=18 format=3 uid="uid://b4ate52j35wen"]
 
 [ext_resource type="Script" path="res://_Project/Code/Runtime/MenuInput.gd" id="1_2qddy"]
 [ext_resource type="Script" path="res://_Project/Code/Runtime/FloorController.gd" id="1_ivdwr"]
@@ -17,7 +17,11 @@ sky = SubResource("Sky_bogeg")
 tonemap_mode = 2
 glow_enabled = true
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8ckkd"]
+albedo_color = Color(0.0470588, 0.0705882, 0.0745098, 1)
+
 [sub_resource type="BoxMesh" id="BoxMesh_x563g"]
+material = SubResource("StandardMaterial3D_8ckkd")
 size = Vector3(40, 1, 40)
 
 [sub_resource type="BoxMesh" id="BoxMesh_2uouw"]
@@ -65,6 +69,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 0)
 script = ExtResource("3_s2451")
 
 [node name="Floor" type="MeshInstance3D" parent="."]
+transform = Transform3D(1.12797, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 mesh = SubResource("BoxMesh_x563g")
 script = ExtResource("1_ivdwr")
 maxAngle = 0.25
