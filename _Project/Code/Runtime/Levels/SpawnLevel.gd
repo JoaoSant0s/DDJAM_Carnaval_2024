@@ -28,6 +28,9 @@ func _instantiateLevel(levelIndex : int):
 	levelInstance.spawnBall()
 
 func _cleanLevel():
+	if levelInstance != null:
+		levelInstance.cleanBall()
+
 	gameInput.levelInstance = null
 
 	if is_instance_valid(levelInstance):
