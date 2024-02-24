@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://b4ate52j35wen"]
+[gd_scene load_steps=20 format=3 uid="uid://b4ate52j35wen"]
 
 [ext_resource type="Script" path="res://_Project/Code/Runtime/MenuInput.gd" id="1_2qddy"]
 [ext_resource type="Script" path="res://_Project/Code/Runtime/FloorController.gd" id="1_ivdwr"]
@@ -6,6 +6,7 @@
 [ext_resource type="Script" path="res://_Project/Code/Runtime/Player/SpawnBall.gd" id="3_s2451"]
 [ext_resource type="Material" uid="uid://dkspc2ilxp8w2" path="res://_Project/Materials/solid.tres" id="4_d6vyx"]
 [ext_resource type="Script" path="res://_Project/Code/Runtime/DeathZone.gd" id="4_s26n5"]
+[ext_resource type="Script" path="res://_Project/Code/Runtime/Teleports/SpawnTeleport.gd" id="7_wtclb"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_k2p3k"]
 
@@ -62,6 +63,12 @@ environment = SubResource("Environment_ux4dc")
 [node name="MenuInput" type="Node" parent="."]
 script = ExtResource("1_2qddy")
 
+[node name="GameInput" type="Node" parent="." node_paths=PackedStringArray("floorInstance")]
+script = ExtResource("1_ivdwr")
+maxAngle = 0.25
+angularSpeed = 0.35
+floorInstance = NodePath("../Floor")
+
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.573576, 0.819152, 0, -0.819152, 0.573576, 0, 25, 23.148)
 
@@ -69,12 +76,11 @@ transform = Transform3D(1, 0, 0, 0, 0.573576, 0.819152, 0, -0.819152, 0.573576, 
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 0)
 script = ExtResource("3_s2451")
 
+[node name="SpawnFloor" type="Node3D" parent="."]
+
 [node name="Floor" type="MeshInstance3D" parent="."]
 transform = Transform3D(1.12797, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 mesh = SubResource("BoxMesh_x563g")
-script = ExtResource("1_ivdwr")
-maxAngle = 0.25
-angularSpeed = 0.25
 
 [node name="Walls" type="Node3D" parent="Floor"]
 
@@ -184,16 +190,22 @@ physics_material_override = SubResource("PhysicsMaterial_l43b3")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Floor/StaticBody3D"]
 shape = SubResource("BoxShape3D_tef56")
 
-[node name="SpawnCollectables" type="Node3D" parent="Floor" node_paths=PackedStringArray("collecablePoints")]
+[node name="SpawnCollectables" type="Node3D" parent="Floor" node_paths=PackedStringArray("collecablePoints", "spawnTeleport")]
 transform = Transform3D(0.886548, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 script = ExtResource("3_gubrw")
 collecablePoints = [NodePath("CollectablePoint_1"), NodePath("CollectablePoint_2")]
+spawnTeleport = NodePath("../SpawnTeleport")
 
 [node name="CollectablePoint_1" type="Node3D" parent="Floor/SpawnCollectables"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.5, 2, -8.5)
 
 [node name="CollectablePoint_2" type="Node3D" parent="Floor/SpawnCollectables"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.5, 2, 8.5)
+
+[node name="SpawnTeleport" type="Node3D" parent="Floor" node_paths=PackedStringArray("spawnCollectable")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.35, 0)
+script = ExtResource("7_wtclb")
+spawnCollectable = NodePath("../SpawnCollectables")
 
 [node name="DeathZone2" type="Area3D" parent="." node_paths=PackedStringArray("spawnBall")]
 script = ExtResource("4_s26n5")

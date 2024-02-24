@@ -1,0 +1,39 @@
+[gd_scene load_steps=7 format=3 uid="uid://r6gvrgbrr3jl"]
+
+[ext_resource type="Script" path="res://_Project/Code/Runtime/Teleports/Teleport.gd" id="1_mieny"]
+[ext_resource type="Material" uid="uid://de8xwufmevt1y" path="res://_Project/Materials/main_color.tres" id="1_npipd"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_ximby"]
+material = ExtResource("1_npipd")
+size = Vector3(3, 0.5, 3)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_he3gd"]
+size = Vector3(3, 0.5, 3)
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_v2hvi"]
+emission_shape = 3
+emission_box_extents = Vector3(1, 1, 1)
+gravity = Vector3(0, 9.8, 0)
+
+[sub_resource type="SphereMesh" id="SphereMesh_o1g2c"]
+material = ExtResource("1_npipd")
+radius = 0.125
+height = 0.25
+
+[node name="Teleport" type="Node3D" node_paths=PackedStringArray("collisionArea")]
+script = ExtResource("1_mieny")
+collisionArea = NodePath("Area3D")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("BoxMesh_ximby")
+
+[node name="Area3D" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+shape = SubResource("BoxShape3D_he3gd")
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="."]
+amount = 16
+visibility_aabb = AABB(-1.5, -4, -1.5, 3, 8, 3)
+process_material = SubResource("ParticleProcessMaterial_v2hvi")
+draw_pass_1 = SubResource("SphereMesh_o1g2c")

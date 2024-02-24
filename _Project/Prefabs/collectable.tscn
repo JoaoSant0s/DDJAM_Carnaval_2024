@@ -1,13 +1,11 @@
 [gd_scene load_steps=6 format=3 uid="uid://b3ei6ws28howd"]
 
 [ext_resource type="Script" path="res://_Project/Code/Runtime/Collectables/Collectable.gd" id="1_l0e7s"]
+[ext_resource type="Material" uid="uid://de8xwufmevt1y" path="res://_Project/Materials/main_color.tres" id="2_kn4av"]
 [ext_resource type="Script" path="res://_Project/Code/Runtime/Common/RotateForever.gd" id="2_p6uo7"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_825nb"]
-albedo_color = Color(0.176471, 1, 1, 1)
-
 [sub_resource type="BoxMesh" id="BoxMesh_25sgr"]
-material = SubResource("StandardMaterial3D_825nb")
+material = ExtResource("2_kn4av")
 size = Vector3(1.5, 1.5, 1.5)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_kltmm"]
