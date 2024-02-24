@@ -4,4 +4,4 @@
 
 [resource]
 script = ExtResource("1_11mhr")
-levels = Array[String](["res://_Project/Levels/level_1.tscn", "res://_Project/Levels/level_1.tscn"])
+levels = Array[String](["res://_Project/Levels/Collection/level_1.tscn"])

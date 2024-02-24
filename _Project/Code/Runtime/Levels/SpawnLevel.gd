@@ -7,7 +7,7 @@ class_name SpawnLevel extends Node3D
 
 @export var startLevelIndex = 0
 var levelIndex : int = 0
-var levelInstance : MeshInstance3D
+var levelInstance : Node3D
 
 func _ready():
 	LevelSignals.onLevelCompleted.connect(_instantiateNextLevel)
