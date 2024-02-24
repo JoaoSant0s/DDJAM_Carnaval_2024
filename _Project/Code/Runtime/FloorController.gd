@@ -32,25 +32,24 @@ func tryResetRotation():
 		jumpPreviousZ = true
 		input.z = -previousZDirection
 
+func buildTargetPosition(delta : float) -> Vector3:
+	var angle = -(input * delta * angularSpeed)
+	angle += rotation
+	
+	var targetX = Math.MinMax(angle.x, -maxAngle, maxAngle)
+	var targetZ = Math.MinMax(angle.z, -maxAngle, maxAngle)
+
+	if jumpPreviousX and ((previousXDirection > 0 and targetX > 0) or (previousXDirection < 0 and targetX < 0)):
+		targetX = rotation.x
+		
+	if jumpPreviousZ and ((previousZDirection > 0 and targetZ > 0) or (previousZDirection < 0 and targetZ < 0)):
+		targetZ = rotation.z
+	
+	return Vector3(targetX, 0, targetZ)
+
 func tryUpdatePreviousDirections():
 	if input.x != 0 and not jumpPreviousX:
 		previousXDirection = input.x
 
 	if input.z != 0 and not jumpPreviousZ:
 		previousZDirection = input.z
-
-func buildTargetPosition(delta : float) -> Vector3:
-	
-	var angle = -(input * delta * angularSpeed)
-	angle += rotation
-	
-	var targetX = Math.MinMax(angle.x, -maxAngle, maxAngle)
-	var targetZ = Math.MinMax(angle.z, -maxAngle, maxAngle)
-	
-	if jumpPreviousX and ((previousXDirection > 0 and targetX > 0) or (previousXDirection < 0 and targetX < 0)):
-		targetX = 0
-		
-	if jumpPreviousZ and ((previousZDirection > 0 and targetZ > 0) or (previousZDirection < 0 and targetZ < 0)):
-		targetZ = 0
-	
-	return Vector3(targetX, 0, targetZ)
