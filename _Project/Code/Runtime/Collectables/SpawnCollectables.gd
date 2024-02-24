@@ -16,8 +16,11 @@ func collectableCollected():
 func spawnCollectables():
 	collectablesAmount = collecablePoints.size()
 	for point in collecablePoints:
+		createCollectable(point.position)
+		
+func createCollectable(position : Vector3):	
 		var instance : Collectable = collectablePrefab.instantiate()
 		instance.onCollectableCollected.connect(collectableCollected)
-		instance.position = point.position
+		instance.position = position
 		add_child(instance)
 	
