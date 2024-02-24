@@ -1,8 +1,7 @@
-[gd_scene load_steps=11 format=3 uid="uid://b4ate52j35wen"]
+[gd_scene load_steps=10 format=3 uid="uid://b4ate52j35wen"]
 
 [ext_resource type="Script" path="res://_Project/Code/Runtime/MenuInput.gd" id="1_2qddy"]
 [ext_resource type="Script" path="res://_Project/Code/Runtime/GameInput.gd" id="1_ivdwr"]
-[ext_resource type="Script" path="res://_Project/Code/Runtime/Player/SpawnBall.gd" id="3_s2451"]
 [ext_resource type="Script" path="res://_Project/Code/Runtime/Levels/SpawnLevel.gd" id="4_eh5fw"]
 [ext_resource type="Script" path="res://_Project/Code/Runtime/DeathZone.gd" id="4_s26n5"]
 [ext_resource type="Resource" uid="uid://bdd7lhv4p7w6n" path="res://_Project/Levels/level_collection_data.tres" id="5_ggflq"]
@@ -19,7 +18,7 @@ tonemap_mode = 2
 glow_enabled = true
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_vj2sp"]
-size = Vector3(80, 1, 80)
+size = Vector3(80, 2, 80)
 
 [node name="Main" type="Node3D"]
 
@@ -43,22 +42,16 @@ angularSpeed = 0.35
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.573576, 0.819152, 0, -0.819152, 0.573576, 0, 25, 23.148)
 
-[node name="SpawnBall" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 0)
-script = ExtResource("3_s2451")
-
-[node name="SpawnLevel" type="Node3D" parent="." node_paths=PackedStringArray("gameInput", "spawnBall")]
+[node name="SpawnLevel" type="Node3D" parent="." node_paths=PackedStringArray("gameInput")]
 script = ExtResource("4_eh5fw")
 gameInput = NodePath("../GameInput")
-spawnBall = NodePath("../SpawnBall")
 levelsCollectionData = ExtResource("5_ggflq")
 
-[node name="DeathZone2" type="Area3D" parent="." node_paths=PackedStringArray("spawnBall")]
+[node name="DeathZone2" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -15, 0)
 script = ExtResource("4_s26n5")
-spawnBall = NodePath("../SpawnBall")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="DeathZone2"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -10, 0)
 shape = SubResource("BoxShape3D_vj2sp")
 
 [connection signal="body_entered" from="DeathZone2" to="DeathZone2" method="_on_body_entered"]

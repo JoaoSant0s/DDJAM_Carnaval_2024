@@ -16,4 +16,4 @@ func spawnNewBall():
 	
 	ballInstance = ballPrefab.instantiate()
 	ballInstance.position = position
-	add_child(ballInstance)
+	get_tree().current_scene.add_child.call_deferred(ballInstance)
