@@ -16,6 +16,10 @@ run/main_scene="res://_Project/Scene/main.tscn"
 config/features=PackedStringArray("4.2", "GL Compatibility")
 config/icon="res://_Project/icon.svg"
 
+[autoload]
+
+LevelSignals="*res://_Project/Code/Runtime/Levels/LevelSignals.gd"
+
 [display]
 
 window/size/viewport_width=1080
