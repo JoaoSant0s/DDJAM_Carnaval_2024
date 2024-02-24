@@ -13,7 +13,6 @@ func _ready():
 func collectableCollected():
 	collectablesAmount -= 1
 	
-	print(collectablesAmount)
 	if collectablesAmount <= 0:
 		spawnTeleport.spawnTeleport()
 
