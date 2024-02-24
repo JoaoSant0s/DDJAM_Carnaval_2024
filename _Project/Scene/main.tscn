@@ -1,8 +1,9 @@
-[gd_scene load_steps=18 format=3 uid="uid://b4ate52j35wen"]
+[gd_scene load_steps=19 format=3 uid="uid://b4ate52j35wen"]
 
 [ext_resource type="Script" path="res://_Project/Code/Runtime/MenuInput.gd" id="1_2qddy"]
 [ext_resource type="Script" path="res://_Project/Code/Runtime/FloorController.gd" id="1_ivdwr"]
-[ext_resource type="Script" path="res://_Project/Code/Runtime/SpawnBall.gd" id="3_s2451"]
+[ext_resource type="Script" path="res://_Project/Code/Runtime/Collectables/SpawnCollectables.gd" id="3_gubrw"]
+[ext_resource type="Script" path="res://_Project/Code/Runtime/Player/SpawnBall.gd" id="3_s2451"]
 [ext_resource type="Material" uid="uid://dkspc2ilxp8w2" path="res://_Project/Materials/solid.tres" id="4_d6vyx"]
 [ext_resource type="Script" path="res://_Project/Code/Runtime/DeathZone.gd" id="4_s26n5"]
 
@@ -73,7 +74,7 @@ transform = Transform3D(1.12797, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 mesh = SubResource("BoxMesh_x563g")
 script = ExtResource("1_ivdwr")
 maxAngle = 0.25
-angularSpeed = 0.3
+angularSpeed = 0.25
 
 [node name="Walls" type="Node3D" parent="Floor"]
 
@@ -182,6 +183,17 @@ physics_material_override = SubResource("PhysicsMaterial_l43b3")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Floor/StaticBody3D"]
 shape = SubResource("BoxShape3D_tef56")
+
+[node name="SpawnCollectables" type="Node3D" parent="Floor" node_paths=PackedStringArray("collecablePoints")]
+transform = Transform3D(0.886548, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+script = ExtResource("3_gubrw")
+collecablePoints = [NodePath("CollectablePoint_1"), NodePath("CollectablePoint_2")]
+
+[node name="CollectablePoint_1" type="Node3D" parent="Floor/SpawnCollectables"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.5, 2, -8.5)
+
+[node name="CollectablePoint_2" type="Node3D" parent="Floor/SpawnCollectables"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.5, 2, 8.5)
 
 [node name="DeathZone2" type="Area3D" parent="." node_paths=PackedStringArray("spawnBall")]
 script = ExtResource("4_s26n5")

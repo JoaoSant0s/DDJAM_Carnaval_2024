@@ -1,0 +1,30 @@
+[gd_scene load_steps=6 format=3 uid="uid://b3ei6ws28howd"]
+
+[ext_resource type="Script" path="res://_Project/Code/Runtime/Collectables/Collectable.gd" id="1_l0e7s"]
+[ext_resource type="Script" path="res://_Project/Code/Runtime/Common/RotateForever.gd" id="2_p6uo7"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_825nb"]
+albedo_color = Color(0.176471, 1, 1, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_25sgr"]
+material = SubResource("StandardMaterial3D_825nb")
+size = Vector3(1.5, 1.5, 1.5)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_kltmm"]
+size = Vector3(1.5, 1.5, 1.5)
+
+[node name="Collectable" type="Node3D" node_paths=PackedStringArray("collisionArea")]
+script = ExtResource("1_l0e7s")
+collisionArea = NodePath("Visual/Area3D")
+
+[node name="Visual" type="MeshInstance3D" parent="."]
+mesh = SubResource("BoxMesh_25sgr")
+skeleton = NodePath("../..")
+script = ExtResource("2_p6uo7")
+angleSpeed = 2.0
+angleBase = Vector3(0, -1, 0)
+
+[node name="Area3D" type="Area3D" parent="Visual"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Visual/Area3D"]
+shape = SubResource("BoxShape3D_kltmm")
