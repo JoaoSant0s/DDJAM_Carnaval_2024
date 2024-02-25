@@ -205,5 +205,5 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.0584, 0.35, 5.19995)
 script = ExtResource("4_fg3py")
 
 [node name="SpawnBall" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.8833, 3, 10.9333)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12, 5, 11)
 script = ExtResource("5_bjlkd")

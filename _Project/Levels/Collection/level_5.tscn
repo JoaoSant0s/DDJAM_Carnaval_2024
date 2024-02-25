@@ -1,53 +1,50 @@
-[gd_scene load_steps=16 format=3 uid="uid://by6wlqjljo3f"]
+[gd_scene load_steps=16 format=3 uid="uid://eymigrwipv0d"]
 
-[ext_resource type="Material" uid="uid://dkspc2ilxp8w2" path="res://_Project/Materials/solid.tres" id="1_axwmp"]
-[ext_resource type="Script" path="res://_Project/Code/Runtime/Levels/Level.gd" id="1_g3d47"]
-[ext_resource type="Script" path="res://_Project/Code/Runtime/Collectables/SpawnCollectables.gd" id="2_tupya"]
-[ext_resource type="Script" path="res://_Project/Code/Runtime/Teleports/SpawnTeleport.gd" id="3_dbfnb"]
-[ext_resource type="Script" path="res://_Project/Code/Runtime/Player/SpawnBall.gd" id="4_dydyd"]
+[ext_resource type="Script" path="res://_Project/Code/Runtime/Levels/Level.gd" id="1_3mehu"]
+[ext_resource type="Material" uid="uid://dkspc2ilxp8w2" path="res://_Project/Materials/solid.tres" id="2_4tav1"]
+[ext_resource type="Script" path="res://_Project/Code/Runtime/Platforms/MovePlatform.gd" id="2_55b3r"]
+[ext_resource type="Script" path="res://_Project/Code/Runtime/Collectables/SpawnCollectables.gd" id="3_xpr2c"]
+[ext_resource type="Script" path="res://_Project/Code/Runtime/Teleports/SpawnTeleport.gd" id="4_k4o4o"]
+[ext_resource type="Script" path="res://_Project/Code/Runtime/Player/SpawnBall.gd" id="5_toaru"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lmcbx"]
 albedo_color = Color(0.0470588, 0.0705882, 0.0745098, 1)
 
 [sub_resource type="BoxMesh" id="BoxMesh_egje2"]
 material = SubResource("StandardMaterial3D_lmcbx")
-size = Vector3(15, 1, 40)
+size = Vector3(10, 1, 40)
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_l43b3"]
 friction = 0.0
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_hxmcr"]
-size = Vector3(15, 1, 40)
+size = Vector3(10, 1, 40)
 
-[sub_resource type="BoxMesh" id="BoxMesh_0xxhr"]
-material = SubResource("StandardMaterial3D_lmcbx")
-size = Vector3(15, 1, 5)
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wvxfo"]
+albedo_color = Color(1, 0.317647, 0.0745098, 1)
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_8rir5"]
-size = Vector3(15, 1, 5)
+[sub_resource type="BoxMesh" id="BoxMesh_fw6u6"]
+material = SubResource("StandardMaterial3D_wvxfo")
+size = Vector3(5, 1, 5)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_qs6as"]
+size = Vector3(5, 1, 5)
 
 [sub_resource type="BoxMesh" id="BoxMesh_2uouw"]
-material = ExtResource("1_axwmp")
+material = ExtResource("2_4tav1")
 size = Vector3(40, 1, 1)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_a5aic"]
 size = Vector3(40, 10, 1)
 
-[sub_resource type="BoxMesh" id="BoxMesh_2dvv8"]
-material = ExtResource("1_axwmp")
-size = Vector3(1, 2, 10)
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_lud7e"]
-size = Vector3(1, 2, 10)
-
-[node name="Level_2" type="Node3D" node_paths=PackedStringArray("ballSpawner")]
-script = ExtResource("1_g3d47")
+[node name="Level_5" type="Node3D" node_paths=PackedStringArray("ballSpawner")]
+script = ExtResource("1_3mehu")
 ballSpawner = NodePath("SpawnBall")
 
 [node name="Platforms" type="Node3D" parent="."]
 
 [node name="Platform" type="MeshInstance3D" parent="Platforms"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.5, 0, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15, 0, 0)
 mesh = SubResource("BoxMesh_egje2")
 skeleton = NodePath("../..")
 
@@ -57,19 +54,8 @@ physics_material_override = SubResource("PhysicsMaterial_l43b3")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Platforms/Platform/StaticBody3D"]
 shape = SubResource("BoxShape3D_hxmcr")
 
-[node name="Platform2" type="MeshInstance3D" parent="Platforms"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.173842, 0, -11.171)
-mesh = SubResource("BoxMesh_0xxhr")
-skeleton = NodePath("../..")
-
-[node name="StaticBody3D" type="StaticBody3D" parent="Platforms/Platform2"]
-physics_material_override = SubResource("PhysicsMaterial_l43b3")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Platforms/Platform2/StaticBody3D"]
-shape = SubResource("BoxShape3D_8rir5")
-
 [node name="Platform3" type="MeshInstance3D" parent="Platforms"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.5, 0, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15, 0, 0)
 mesh = SubResource("BoxMesh_egje2")
 skeleton = NodePath("../..")
 
@@ -78,6 +64,21 @@ physics_material_override = SubResource("PhysicsMaterial_l43b3")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Platforms/Platform3/StaticBody3D"]
 shape = SubResource("BoxShape3D_hxmcr")
+
+[node name="MovePlatform" type="MeshInstance3D" parent="Platforms"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.5, 0, 0)
+mesh = SubResource("BoxMesh_fw6u6")
+skeleton = NodePath("../..")
+script = ExtResource("2_55b3r")
+moveOffset = Vector3(-15, 0, 0)
+duration = 3.0
+loop = true
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Platforms/MovePlatform"]
+physics_material_override = SubResource("PhysicsMaterial_l43b3")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Platforms/MovePlatform/StaticBody3D"]
+shape = SubResource("BoxShape3D_qs6as")
 
 [node name="Walls" type="Node3D" parent="."]
 
@@ -129,49 +130,22 @@ physics_material_override = SubResource("PhysicsMaterial_l43b3")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.465, 0)
 shape = SubResource("BoxShape3D_a5aic")
 
-[node name="Blockers" type="Node3D" parent="."]
-
-[node name="L_Blocker" type="Node3D" parent="Blockers"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 0, 5)
-
-[node name="Blocker" type="MeshInstance3D" parent="Blockers/L_Blocker"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.5, 1.5, 0)
-mesh = SubResource("BoxMesh_2dvv8")
-skeleton = NodePath("../../../..")
-
-[node name="StaticBody3D" type="StaticBody3D" parent="Blockers/L_Blocker/Blocker"]
-physics_material_override = SubResource("PhysicsMaterial_l43b3")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Blockers/L_Blocker/Blocker/StaticBody3D"]
-shape = SubResource("BoxShape3D_lud7e")
-
-[node name="Blocker2" type="MeshInstance3D" parent="Blockers/L_Blocker"]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 1.5, -4.5)
-mesh = SubResource("BoxMesh_2dvv8")
-skeleton = NodePath("../../../..")
-
-[node name="StaticBody3D" type="StaticBody3D" parent="Blockers/L_Blocker/Blocker2"]
-physics_material_override = SubResource("PhysicsMaterial_l43b3")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Blockers/L_Blocker/Blocker2/StaticBody3D"]
-shape = SubResource("BoxShape3D_lud7e")
-
 [node name="SpawnCollectables" type="Node3D" parent="." node_paths=PackedStringArray("spawnTeleport", "collecablePoints")]
 transform = Transform3D(0.886548, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
-script = ExtResource("2_tupya")
+script = ExtResource("3_xpr2c")
 spawnTeleport = NodePath("../SpawnTeleport")
 collecablePoints = [NodePath("CollectablePoint_1"), NodePath("CollectablePoint_2")]
 
 [node name="CollectablePoint_1" type="Node3D" parent="SpawnCollectables"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12, 2, -11)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.9911, 2, -11)
 
 [node name="CollectablePoint_2" type="Node3D" parent="SpawnCollectables"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12, 2, 6)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15.3391, 2, 8.9064)
 
 [node name="SpawnTeleport" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.5172, 0.35, -10.7287)
-script = ExtResource("3_dbfnb")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.1018, 0.35, -10.7287)
+script = ExtResource("4_k4o4o")
 
 [node name="SpawnBall" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12, 5, 9)
-script = ExtResource("4_dydyd")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.578, 5, 8.368)
+script = ExtResource("5_toaru")
