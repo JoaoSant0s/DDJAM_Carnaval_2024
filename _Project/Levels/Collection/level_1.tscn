@@ -21,7 +21,7 @@ size = Vector3(40, 1, 1)
 friction = 0.0
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_a5aic"]
-size = Vector3(40, 5.1333, 1)
+size = Vector3(40, 10, 1)
 
 [sub_resource type="BoxMesh" id="BoxMesh_2dvv8"]
 material = ExtResource("1_5a1ng")
@@ -51,7 +51,7 @@ skeleton = NodePath("../../..")
 physics_material_override = SubResource("PhysicsMaterial_l43b3")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Walls/Wall/StaticBody3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.465, 0)
 shape = SubResource("BoxShape3D_a5aic")
 
 [node name="Wall2" type="MeshInstance3D" parent="Walls"]
@@ -63,7 +63,7 @@ skeleton = NodePath("../../..")
 physics_material_override = SubResource("PhysicsMaterial_l43b3")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Walls/Wall2/StaticBody3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.465, 0)
 shape = SubResource("BoxShape3D_a5aic")
 
 [node name="Wall3" type="MeshInstance3D" parent="Walls"]
@@ -75,7 +75,7 @@ skeleton = NodePath("../../..")
 physics_material_override = SubResource("PhysicsMaterial_l43b3")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Walls/Wall3/StaticBody3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.465, 0)
 shape = SubResource("BoxShape3D_a5aic")
 
 [node name="Wall4" type="MeshInstance3D" parent="Walls"]
@@ -87,7 +87,7 @@ skeleton = NodePath("../../..")
 physics_material_override = SubResource("PhysicsMaterial_l43b3")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Walls/Wall4/StaticBody3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.465, 0)
 shape = SubResource("BoxShape3D_a5aic")
 
 [node name="Blockers" type="Node3D" parent="."]
