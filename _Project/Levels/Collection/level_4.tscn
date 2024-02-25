@@ -1,10 +1,10 @@
-[gd_scene load_steps=18 format=3 uid="uid://cqwru6dmtxy08"]
+[gd_scene load_steps=20 format=3 uid="uid://xwvovtddf7px"]
 
-[ext_resource type="Script" path="res://_Project/Code/Runtime/Levels/Level.gd" id="1_8tonp"]
-[ext_resource type="Material" uid="uid://dkspc2ilxp8w2" path="res://_Project/Materials/solid.tres" id="2_uagbg"]
-[ext_resource type="Script" path="res://_Project/Code/Runtime/Collectables/SpawnCollectables.gd" id="3_4ob6b"]
-[ext_resource type="Script" path="res://_Project/Code/Runtime/Teleports/SpawnTeleport.gd" id="4_fg3py"]
-[ext_resource type="Script" path="res://_Project/Code/Runtime/Player/SpawnBall.gd" id="5_bjlkd"]
+[ext_resource type="Script" path="res://_Project/Code/Runtime/Levels/Level.gd" id="1_bhawk"]
+[ext_resource type="Material" uid="uid://dkspc2ilxp8w2" path="res://_Project/Materials/solid.tres" id="2_r8ouk"]
+[ext_resource type="Script" path="res://_Project/Code/Runtime/Collectables/SpawnCollectables.gd" id="3_8rpaf"]
+[ext_resource type="Script" path="res://_Project/Code/Runtime/Teleports/SpawnTeleport.gd" id="4_7hxkm"]
+[ext_resource type="Script" path="res://_Project/Code/Runtime/Player/SpawnBall.gd" id="5_tblwe"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lmcbx"]
 albedo_color = Color(0.0470588, 0.0705882, 0.0745098, 1)
@@ -26,29 +26,36 @@ size = Vector3(15, 1, 5)
 [sub_resource type="BoxShape3D" id="BoxShape3D_8rir5"]
 size = Vector3(15, 1, 5)
 
-[sub_resource type="BoxMesh" id="BoxMesh_twr8e"]
+[sub_resource type="BoxMesh" id="BoxMesh_a8arw"]
 material = SubResource("StandardMaterial3D_lmcbx")
-size = Vector3(5, 1, 5)
+size = Vector3(8, 1, 5)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_cy6bx"]
-size = Vector3(5, 1, 5)
+size = Vector3(8, 1, 5)
+
+[sub_resource type="BoxMesh" id="BoxMesh_pkm0a"]
+material = SubResource("StandardMaterial3D_lmcbx")
+size = Vector3(15, 1, 8)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_1n6pr"]
+size = Vector3(15, 1, 8)
 
 [sub_resource type="BoxMesh" id="BoxMesh_2uouw"]
-material = ExtResource("2_uagbg")
+material = ExtResource("2_r8ouk")
 size = Vector3(40, 1, 1)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_a5aic"]
 size = Vector3(40, 10, 1)
 
 [sub_resource type="BoxMesh" id="BoxMesh_2dvv8"]
-material = ExtResource("2_uagbg")
+material = ExtResource("2_r8ouk")
 size = Vector3(1, 2, 10)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_lud7e"]
 size = Vector3(1, 2, 10)
 
-[node name="Level_3" type="Node3D" node_paths=PackedStringArray("ballSpawner")]
-script = ExtResource("1_8tonp")
+[node name="Level_4" type="Node3D" node_paths=PackedStringArray("ballSpawner")]
+script = ExtResource("1_bhawk")
 ballSpawner = NodePath("SpawnBall")
 
 [node name="Platforms" type="Node3D" parent="."]
@@ -87,14 +94,36 @@ physics_material_override = SubResource("PhysicsMaterial_l43b3")
 shape = SubResource("BoxShape3D_8rir5")
 
 [node name="Platform5" type="MeshInstance3D" parent="Platforms"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.43628, 3.18299, -12.0041)
-mesh = SubResource("BoxMesh_twr8e")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.9399, 3.18569, -12.0041)
+mesh = SubResource("BoxMesh_a8arw")
 skeleton = NodePath("../..")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="Platforms/Platform5"]
 physics_material_override = SubResource("PhysicsMaterial_l43b3")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Platforms/Platform5/StaticBody3D"]
+shape = SubResource("BoxShape3D_cy6bx")
+
+[node name="Platform6" type="MeshInstance3D" parent="Platforms"]
+transform = Transform3D(-4.30473e-08, 7.5904e-09, -1, 0.173648, 0.984808, 0, 0.984808, -0.173648, -4.37114e-08, 10.94, 4.49887, -2.0441)
+mesh = SubResource("BoxMesh_pkm0a")
+skeleton = NodePath("../..")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Platforms/Platform6"]
+physics_material_override = SubResource("PhysicsMaterial_l43b3")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Platforms/Platform6/StaticBody3D"]
+shape = SubResource("BoxShape3D_1n6pr")
+
+[node name="Platform7" type="MeshInstance3D" parent="Platforms"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.9399, 5.79679, 7.75564)
+mesh = SubResource("BoxMesh_a8arw")
+skeleton = NodePath("../..")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Platforms/Platform7"]
+physics_material_override = SubResource("PhysicsMaterial_l43b3")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Platforms/Platform7/StaticBody3D"]
 shape = SubResource("BoxShape3D_cy6bx")
 
 [node name="Platform4" type="MeshInstance3D" parent="Platforms"]
@@ -187,23 +216,23 @@ shape = SubResource("BoxShape3D_lud7e")
 
 [node name="SpawnCollectables" type="Node3D" parent="." node_paths=PackedStringArray("spawnTeleport", "collecablePoints")]
 transform = Transform3D(0.886548, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
-script = ExtResource("3_4ob6b")
+script = ExtResource("3_8rpaf")
 spawnTeleport = NodePath("../SpawnTeleport")
 collecablePoints = [NodePath("CollectablePoint_1"), NodePath("CollectablePoint_2"), NodePath("CollectablePoint_3")]
 
 [node name="CollectablePoint_1" type="Node3D" parent="SpawnCollectables"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.8241, 4.9566, -11.8789)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.8674, 4.9566, -11.8789)
 
 [node name="CollectablePoint_2" type="Node3D" parent="SpawnCollectables"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12, 2, 1.5)
 
 [node name="CollectablePoint_3" type="Node3D" parent="SpawnCollectables"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.8089, 2, -1.69344)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.9545, 9.04973, 7.19467)
 
 [node name="SpawnTeleport" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.0584, 0.35, 5.19995)
-script = ExtResource("4_fg3py")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.801, 0.35, 5.19995)
+script = ExtResource("4_7hxkm")
 
 [node name="SpawnBall" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.8833, 3, 10.9333)
-script = ExtResource("5_bjlkd")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.8833, 3, 11.0423)
+script = ExtResource("5_tblwe")
