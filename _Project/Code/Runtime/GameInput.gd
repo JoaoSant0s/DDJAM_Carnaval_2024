@@ -5,7 +5,7 @@ var input : Vector3
 @export var maxAngle : float = 0.2
 @export var angularSpeed : float = 1
 
-var levelInstance : MeshInstance3D
+var levelInstance : Level
 
 var previousXDirection : int = 0
 var previousZDirection : int = 0

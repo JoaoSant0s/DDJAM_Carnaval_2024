@@ -2,8 +2,8 @@ class_name SpawnCollectables extends Node3D
 
 var collectablePrefab = preload("res://_Project/Prefabs/collectable.tscn")
 
-@export var collecablePoints : Array[Node3D]
 @export var spawnTeleport : SpawnTeleport
+@export var collecablePoints : Array[Node3D]
 
 var collectablesAmount : int
 

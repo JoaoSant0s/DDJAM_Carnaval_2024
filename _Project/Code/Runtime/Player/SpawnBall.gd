@@ -4,7 +4,7 @@ var ballPrefab = preload("res://_Project/Prefabs/ball.tscn")
 
 var ballInstance : RigidBody3D
 
-func _tryResetLasInstance():
+func tryResetLasInstance():
 	if ballInstance == null or not is_instance_valid(ballInstance):
 		return
 	
@@ -12,8 +12,7 @@ func _tryResetLasInstance():
 	ballInstance = null
 
 func spawnNewBall():
-	_tryResetLasInstance()
-	
+	tryResetLasInstance()
 	ballInstance = ballPrefab.instantiate()
 	ballInstance.position = position
-	add_child(ballInstance)
+	get_tree().current_scene.add_child.call_deferred(ballInstance)

@@ -1,0 +1,209 @@
+[gd_scene load_steps=18 format=3 uid="uid://cqwru6dmtxy08"]
+
+[ext_resource type="Script" path="res://_Project/Code/Runtime/Levels/Level.gd" id="1_8tonp"]
+[ext_resource type="Material" uid="uid://dkspc2ilxp8w2" path="res://_Project/Materials/solid.tres" id="2_uagbg"]
+[ext_resource type="Script" path="res://_Project/Code/Runtime/Collectables/SpawnCollectables.gd" id="3_4ob6b"]
+[ext_resource type="Script" path="res://_Project/Code/Runtime/Teleports/SpawnTeleport.gd" id="4_fg3py"]
+[ext_resource type="Script" path="res://_Project/Code/Runtime/Player/SpawnBall.gd" id="5_bjlkd"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lmcbx"]
+albedo_color = Color(0.0470588, 0.0705882, 0.0745098, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_egje2"]
+material = SubResource("StandardMaterial3D_lmcbx")
+size = Vector3(15, 1, 40)
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_l43b3"]
+friction = 0.0
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_hxmcr"]
+size = Vector3(15, 1, 40)
+
+[sub_resource type="BoxMesh" id="BoxMesh_0xxhr"]
+material = SubResource("StandardMaterial3D_lmcbx")
+size = Vector3(15, 1, 5)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_8rir5"]
+size = Vector3(15, 1, 5)
+
+[sub_resource type="BoxMesh" id="BoxMesh_twr8e"]
+material = SubResource("StandardMaterial3D_lmcbx")
+size = Vector3(5, 1, 5)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_cy6bx"]
+size = Vector3(5, 1, 5)
+
+[sub_resource type="BoxMesh" id="BoxMesh_2uouw"]
+material = ExtResource("2_uagbg")
+size = Vector3(40, 1, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_a5aic"]
+size = Vector3(40, 10, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_2dvv8"]
+material = ExtResource("2_uagbg")
+size = Vector3(1, 2, 10)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_lud7e"]
+size = Vector3(1, 2, 10)
+
+[node name="Level_3" type="Node3D" node_paths=PackedStringArray("ballSpawner")]
+script = ExtResource("1_8tonp")
+ballSpawner = NodePath("SpawnBall")
+
+[node name="Platforms" type="Node3D" parent="."]
+
+[node name="Platform" type="MeshInstance3D" parent="Platforms"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.5, 0, 0)
+mesh = SubResource("BoxMesh_egje2")
+skeleton = NodePath("../..")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Platforms/Platform"]
+physics_material_override = SubResource("PhysicsMaterial_l43b3")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Platforms/Platform/StaticBody3D"]
+shape = SubResource("BoxShape3D_hxmcr")
+
+[node name="Platform2" type="MeshInstance3D" parent="Platforms"]
+transform = Transform3D(0.984808, 0.173648, 0, -0.173648, 0.984808, 0, 0, 0, 1, -0.174, 0.9, 11)
+mesh = SubResource("BoxMesh_0xxhr")
+skeleton = NodePath("../..")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Platforms/Platform2"]
+physics_material_override = SubResource("PhysicsMaterial_l43b3")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Platforms/Platform2/StaticBody3D"]
+shape = SubResource("BoxShape3D_8rir5")
+
+[node name="Platform3" type="MeshInstance3D" parent="Platforms"]
+transform = Transform3D(0.965926, -0.258819, 0, 0.258819, 0.965926, 0, 0, 0, 1, -0.184931, 1.26654, -12.0011)
+mesh = SubResource("BoxMesh_0xxhr")
+skeleton = NodePath("../..")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Platforms/Platform3"]
+physics_material_override = SubResource("PhysicsMaterial_l43b3")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Platforms/Platform3/StaticBody3D"]
+shape = SubResource("BoxShape3D_8rir5")
+
+[node name="Platform5" type="MeshInstance3D" parent="Platforms"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.43628, 3.18299, -12.0041)
+mesh = SubResource("BoxMesh_twr8e")
+skeleton = NodePath("../..")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Platforms/Platform5"]
+physics_material_override = SubResource("PhysicsMaterial_l43b3")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Platforms/Platform5/StaticBody3D"]
+shape = SubResource("BoxShape3D_cy6bx")
+
+[node name="Platform4" type="MeshInstance3D" parent="Platforms"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.5, 0, 0)
+mesh = SubResource("BoxMesh_egje2")
+skeleton = NodePath("../..")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Platforms/Platform4"]
+physics_material_override = SubResource("PhysicsMaterial_l43b3")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Platforms/Platform4/StaticBody3D"]
+shape = SubResource("BoxShape3D_hxmcr")
+
+[node name="Walls" type="Node3D" parent="."]
+
+[node name="Wall" type="MeshInstance3D" parent="Walls"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 19.5)
+mesh = SubResource("BoxMesh_2uouw")
+skeleton = NodePath("../../..")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Walls/Wall"]
+physics_material_override = SubResource("PhysicsMaterial_l43b3")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Walls/Wall/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.46453, 0)
+shape = SubResource("BoxShape3D_a5aic")
+
+[node name="Wall2" type="MeshInstance3D" parent="Walls"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, -19.5)
+mesh = SubResource("BoxMesh_2uouw")
+skeleton = NodePath("../../..")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Walls/Wall2"]
+physics_material_override = SubResource("PhysicsMaterial_l43b3")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Walls/Wall2/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.46453, 0)
+shape = SubResource("BoxShape3D_a5aic")
+
+[node name="Wall3" type="MeshInstance3D" parent="Walls"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -19.5, 1, 0)
+mesh = SubResource("BoxMesh_2uouw")
+skeleton = NodePath("../../..")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Walls/Wall3"]
+physics_material_override = SubResource("PhysicsMaterial_l43b3")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Walls/Wall3/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.46453, 0)
+shape = SubResource("BoxShape3D_a5aic")
+
+[node name="Wall4" type="MeshInstance3D" parent="Walls"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 19.5, 1, 0)
+mesh = SubResource("BoxMesh_2uouw")
+skeleton = NodePath("../../..")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Walls/Wall4"]
+physics_material_override = SubResource("PhysicsMaterial_l43b3")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Walls/Wall4/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.46453, 0)
+shape = SubResource("BoxShape3D_a5aic")
+
+[node name="Blockers" type="Node3D" parent="."]
+
+[node name="L_Blocker" type="Node3D" parent="Blockers"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 0, 1)
+
+[node name="Blocker" type="MeshInstance3D" parent="Blockers/L_Blocker"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.5, 1.5, 0)
+mesh = SubResource("BoxMesh_2dvv8")
+skeleton = NodePath("../../../..")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Blockers/L_Blocker/Blocker"]
+physics_material_override = SubResource("PhysicsMaterial_l43b3")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Blockers/L_Blocker/Blocker/StaticBody3D"]
+shape = SubResource("BoxShape3D_lud7e")
+
+[node name="Blocker2" type="MeshInstance3D" parent="Blockers/L_Blocker"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 1.5, -4.5)
+mesh = SubResource("BoxMesh_2dvv8")
+skeleton = NodePath("../../../..")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Blockers/L_Blocker/Blocker2"]
+physics_material_override = SubResource("PhysicsMaterial_l43b3")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Blockers/L_Blocker/Blocker2/StaticBody3D"]
+shape = SubResource("BoxShape3D_lud7e")
+
+[node name="SpawnCollectables" type="Node3D" parent="." node_paths=PackedStringArray("spawnTeleport", "collecablePoints")]
+transform = Transform3D(0.886548, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+script = ExtResource("3_4ob6b")
+spawnTeleport = NodePath("../SpawnTeleport")
+collecablePoints = [NodePath("CollectablePoint_1"), NodePath("CollectablePoint_2"), NodePath("CollectablePoint_3")]
+
+[node name="CollectablePoint_1" type="Node3D" parent="SpawnCollectables"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.8241, 4.9566, -11.8789)
+
+[node name="CollectablePoint_2" type="Node3D" parent="SpawnCollectables"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12, 2, 1.5)
+
+[node name="CollectablePoint_3" type="Node3D" parent="SpawnCollectables"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.8089, 2, -1.69344)
+
+[node name="SpawnTeleport" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.0584, 0.35, 5.19995)
+script = ExtResource("4_fg3py")
+
+[node name="SpawnBall" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12, 5, 11)
+script = ExtResource("5_bjlkd")

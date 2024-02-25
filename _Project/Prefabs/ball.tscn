@@ -1,4 +1,6 @@
-[gd_scene load_steps=5 format=3 uid="uid://didv5cv5duosd"]
+[gd_scene load_steps=8 format=3 uid="uid://didv5cv5duosd"]
+
+[ext_resource type="Material" uid="uid://de8xwufmevt1y" path="res://_Project/Materials/main_color.tres" id="1_5w62k"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_dhuov"]
 friction = 0.0
@@ -14,6 +16,15 @@ height = 4.0
 [sub_resource type="SphereShape3D" id="SphereShape3D_vg0je"]
 radius = 2.0
 
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_lnfmo"]
+emission_shape = 1
+emission_sphere_radius = 1.0
+
+[sub_resource type="SphereMesh" id="SphereMesh_og6yq"]
+material = ExtResource("1_5w62k")
+radius = 0.125
+height = 0.25
+
 [node name="Ball" type="RigidBody3D" groups=["Ball"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0321364, 7.24733, -0.701538)
 mass = 100.0
@@ -25,3 +36,10 @@ skeleton = NodePath("../..")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("SphereShape3D_vg0je")
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="."]
+amount = 16
+amount_ratio = 0.5
+visibility_aabb = AABB(-1.5, -4, -1.5, 3, 8, 3)
+process_material = SubResource("ParticleProcessMaterial_lnfmo")
+draw_pass_1 = SubResource("SphereMesh_og6yq")
