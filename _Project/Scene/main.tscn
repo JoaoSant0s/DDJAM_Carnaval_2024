@@ -1,10 +1,11 @@
-[gd_scene load_steps=10 format=3 uid="uid://b4ate52j35wen"]
+[gd_scene load_steps=12 format=3 uid="uid://b4ate52j35wen"]
 
 [ext_resource type="Script" path="res://_Project/Code/Runtime/MenuInput.gd" id="1_2qddy"]
 [ext_resource type="Script" path="res://_Project/Code/Runtime/GameInput.gd" id="1_ivdwr"]
 [ext_resource type="Script" path="res://_Project/Code/Runtime/Levels/SpawnLevel.gd" id="4_eh5fw"]
 [ext_resource type="Script" path="res://_Project/Code/Runtime/DeathZone.gd" id="4_s26n5"]
 [ext_resource type="Resource" uid="uid://bdd7lhv4p7w6n" path="res://_Project/Levels/level_collection_data.tres" id="5_ggflq"]
+[ext_resource type="Script" path="res://_Project/Code/Runtime/Levels/LevelUI.gd" id="6_8gvdk"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_k2p3k"]
 
@@ -19,6 +20,9 @@ glow_enabled = true
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_vj2sp"]
 size = Vector3(80, 2, 80)
+
+[sub_resource type="LabelSettings" id="LabelSettings_tgty4"]
+font_size = 30
 
 [node name="Main" type="Node3D"]
 
@@ -53,5 +57,28 @@ script = ExtResource("4_s26n5")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="DeathZone2"]
 shape = SubResource("BoxShape3D_vj2sp")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Control" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="CanvasLayer/Control"]
+layout_mode = 0
+offset_left = 20.0
+offset_top = 20.0
+offset_right = 103.0
+offset_bottom = 48.0
+text = "Level %s"
+label_settings = SubResource("LabelSettings_tgty4")
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("6_8gvdk")
+levelCollectionData = ExtResource("5_ggflq")
 
 [connection signal="body_entered" from="DeathZone2" to="DeathZone2" method="_on_body_entered"]

@@ -20,12 +20,12 @@ func _instantiateNextLevel():
 
 func _instantiateLevel(levelIndex : int):
 	_cleanLevel()
-	print("Level: ", levelIndex + 1, " / ", levelsCollectionData.levelsAmount)
 	var levelPrefab = load(levelsCollectionData.levels[levelIndex])
 	levelInstance = levelPrefab.instantiate()
 	add_child(levelInstance)
 	gameInput.levelInstance = levelInstance
 	levelInstance.spawnBall()
+	LevelSignals.onLevelInitialized.emit(levelIndex + 1)
 
 func _cleanLevel():
 	if levelInstance != null:
