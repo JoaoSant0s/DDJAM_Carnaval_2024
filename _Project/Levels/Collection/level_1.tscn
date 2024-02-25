@@ -37,7 +37,7 @@ size = Vector3(40, 1, 40)
 script = ExtResource("1_u18hj")
 ballSpawner = NodePath("SpawnBall")
 
-[node name="Visual" type="MeshInstance3D" parent="."]
+[node name="Platform" type="MeshInstance3D" parent="."]
 mesh = SubResource("BoxMesh_bpeog")
 
 [node name="Walls" type="Node3D" parent="."]
@@ -148,11 +148,11 @@ physics_material_override = SubResource("PhysicsMaterial_l43b3")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
 shape = SubResource("BoxShape3D_tef56")
 
-[node name="SpawnCollectables" type="Node3D" parent="." node_paths=PackedStringArray("collecablePoints", "spawnTeleport")]
+[node name="SpawnCollectables" type="Node3D" parent="." node_paths=PackedStringArray("spawnTeleport", "collecablePoints")]
 transform = Transform3D(0.886548, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 script = ExtResource("2_6jpxo")
-collecablePoints = [NodePath("CollectablePoint_1"), NodePath("CollectablePoint_2")]
 spawnTeleport = NodePath("../SpawnTeleport")
+collecablePoints = [NodePath("CollectablePoint_1"), NodePath("CollectablePoint_2")]
 
 [node name="CollectablePoint_1" type="Node3D" parent="SpawnCollectables"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.5, 2, -8.5)

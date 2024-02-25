@@ -12,7 +12,6 @@ func tryResetLasInstance():
 	ballInstance = null
 
 func spawnNewBall():
-	print("spawnNewBall ", ballInstance)
 	tryResetLasInstance()
 	ballInstance = ballPrefab.instantiate()
 	ballInstance.position = position
